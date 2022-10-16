@@ -36,7 +36,7 @@ func main() {
 	} else {
 		unit, err = util.CurrentUnitName()
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalf("error getting current unit name: %v", err)
 		}
 	}
 	if *debug {
@@ -54,7 +54,7 @@ func main() {
 		restarts, err = getRestarts(unit)
 	}
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("error getting restarts: %v", err)
 	}
 	if *debug {
 		log.Printf("NRestarts: %d", restarts)
