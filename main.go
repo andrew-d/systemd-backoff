@@ -25,6 +25,8 @@ var (
 
 func main() {
 	log.SetOutput(os.Stderr)
+	log.SetPrefix("systemd-backoff: ")
+	log.SetFlags(0)
 	flag.Parse()
 
 	var (
@@ -73,9 +75,7 @@ func main() {
 		Max:    *max,
 	}
 	dur := b.ForAttempt(float64(restarts))
-	if *debug {
-		log.Printf("duration: %v", dur)
-	}
+	log.Printf("waiting for: %v", dur)
 	time.Sleep(dur)
 }
 
